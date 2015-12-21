@@ -77,16 +77,15 @@ timer.fixSessTime = function() {
   timer.minutes = timer.minutes - 1; 
   timer.displayTime(timer.hours,timer.minutes,timer.seconds)
   timer.decTime(timer.hours,timer.minutes,timer.seconds);
- 
 }
+
 timer.fixBreakTime = function() {
   hours = Math.floor(timer.breakTime/3600) & 24;
   timer.minutes = timer.breakTime > 60 ? (timer.breakTime/60)%60 : timer.breakTime;
   
   timer.displayTime(timer.hours,timer.minutes,timer.seconds);
   timer.decTime(timer.hours,timer.minutes,timer.seconds);
- }
-
+}
 
 timer.decTime = function(h,m,seconds) {
   timer.intControl = setInterval(function(h,m,seconds) {
@@ -145,11 +144,19 @@ timer.handleClock = function() {
 
 timer.reset = function() {
   clearInterval(timer.intControl);
+  var sound = $('.sound');
+  sound[0].play();
   timer.count = 1;
   timer.isSess = (timer.isSess === true) ? false : true;
   timer.isBreak = (timer.isBreak === true) ? false: true;
-  console.log('sess',timer.isSess,'break',timer.isBreak);
-  timer.handleClock();
+  if (timer.isBreak) {
+    $(".circle").addClass("circle-break");
+  }
+  setTimeout(function() {
+    sound[0].pause();
+    timer.handleClock();
+  },3000);
+ 
 
 }
 $(document).ready(function() {
