@@ -1,7 +1,7 @@
 var timer = {
   breakTime:5,
   sessTime:1,
-  seconds:10,
+  seconds:59,
   minutes:0,
   hours:0,  
   count:1,
@@ -22,7 +22,7 @@ timer.sessPlus = function() {
 
 timer.sessMinus = function() {
   //takes care of decrementing time and updating view
-  timer.sessTime <= 0 ? timer.sessTime : timer.sessTime--;
+  timer.sessTime <= 1 ? timer.sessTime : timer.sessTime--;
   timer.seconds = 59;
   $(".sessNum").text(timer.sessTime);
 
@@ -42,7 +42,7 @@ timer.breakPlus = function() {
 }
 
 timer.breakMinus = function() {
-  timer.breakTime <=0 ? timer.breakTime : timer.breakTime--;
+  timer.breakTime <= 1 ? timer.breakTime : timer.breakTime--;
   timer.seconds = 59;
   $(".breakNum").text(timer.breakTime);
   if (timer.isBreak) {
@@ -80,9 +80,10 @@ timer.fixSessTime = function() {
 }
 
 timer.fixBreakTime = function() {
-  hours = Math.floor(timer.breakTime/3600) & 24;
+  timer.hours = Math.floor(timer.breakTime/3600) % 24;
   timer.minutes = timer.breakTime > 60 ? (timer.breakTime/60)%60 : timer.breakTime;
-  
+  timer.minutes = timer.minutes-1;
+  console.log(timer.minutes,timer.seconds);
   timer.displayTime(timer.hours,timer.minutes,timer.seconds);
   timer.decTime(timer.hours,timer.minutes,timer.seconds);
 }
@@ -91,6 +92,7 @@ timer.decTime = function(h,m,seconds) {
   timer.intControl = setInterval(function(h,m,seconds) {
     if (timer.seconds !== 0) {
     timer.seconds--;
+    $(".circle").animate({"background-color":"red"}, 'fast');
     timer.displayTime(timer.hours,timer.minutes,timer.seconds);
     } else if(timer.seconds === 0 && timer.minutes === 0) {
         timer.reset();
@@ -134,7 +136,9 @@ timer.handleClock = function() {
     }
   } 
    if (timer.isBreak) {
+    console.log(timer.count,timer.minutes,timer.seconds);
      if (timer.count % 2 === 0) {
+    console.log(timer.count,timer.minutes,timer.seconds);
     timer.fixBreakTime();
      } else {
     clearInterval(timer.intControl);
@@ -147,13 +151,19 @@ timer.reset = function() {
   var sound = $('.sound');
   sound[0].play();
   timer.count = 1;
+  timer.seconds=59;
   timer.isSess = (timer.isSess === true) ? false : true;
   timer.isBreak = (timer.isBreak === true) ? false: true;
-  if (timer.isBreak) {
-    $(".circle").addClass("circle-break");
-  }
+  
   setTimeout(function() {
+    
     sound[0].pause();
+    if (timer.isSess) {
+     $(".circle").removeClass("circle-break");
+    }
+    if (timer.isBreak) {
+      $(".circle").addClass("circle-break");
+    } 
     timer.handleClock();
   },3000);
  
