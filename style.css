@@ -150,9 +150,22 @@ padding:4px;
 #sessMinus {
 padding:4px;
 }
-.cover .btn-lg {
-  padding: 10px 20px;
-  font-weight: bold;
+.btn.outline {
+  background:none;
+  
+}
+.btn-primary.outline {
+  border: 1px solid #333;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+  color: #778899;
+  border-color: #778899;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+  border-color: #778899;
+  color: #778899;
+  box-shadow: none;
 }
 .lead {
 margin-top:100px;

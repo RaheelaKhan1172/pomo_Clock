@@ -12,11 +12,28 @@
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
-            <h4 class="breakNum"></h4>
-            <h3 class="break"><span id="breakPlus">+</span>Break<span id="breakMinus">-</span></h3>
-            <h4 class="sessNum"></h4> 
-             <h3 class="session"><span id="sessPlus">+</span>Session<span id="sessMinus">-</span></h3>
-            <div class="circle">
+          <div class="row">
+            <div class="col-md-4">
+              <span id="breakNum"></span>
+            </div>
+
+            <div class="col-md-4 col-md-offset-4">
+              <span id="sessNum"></span>
+            </div>
+          </div><!-- num row -->
+          <div class="row">
+            <div class="col-md-4">
+            <h3 class="break"><button class = "btn btn-primary btn-xs outline"id="breakPlus">+</button>Break length<button class="btn btn-primary btn-xs outline" id="breakMinus">-</button></h3>
+            </div><!-- col ends -->
+            <div class="col-md-offset-4 col-md-4"> 
+                <h3 class="session">
+                  <button class="btn btn-primary btn-xs outline" id="sessPlus">+</button>
+                  <span>Session Length</span>
+                  <button class="btn btn-primary btn-xs outline" id="sessMinus">-</button>
+                  </h3>
+              </div>
+          </div><!-- row close -->
+             <div class="circle">
             <p class="lead"><span id="curr"></span><span id="display"></span></p>
           </div>
         </div>

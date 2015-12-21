@@ -14,7 +14,7 @@ timer.sessPlus = function() {
  //increments time and updates view
   timer.sessTime++;
   timer.seconds = 59;
-  $(".sessNum").text(timer.sessTime);
+  $("#sessNum").text(timer.sessTime);
   if (timer.isSess) {
    $("#display").text(timer.sessTime);
   }
@@ -24,7 +24,7 @@ timer.sessMinus = function() {
   //takes care of decrementing time and updating view
   timer.sessTime <= 1 ? timer.sessTime : timer.sessTime--;
   timer.seconds = 59;
-  $(".sessNum").text(timer.sessTime);
+  $("#sessNum").text(timer.sessTime);
 
   if (timer.isSess) {
     $("#display").text(timer.sessTime);
@@ -35,7 +35,7 @@ timer.breakPlus = function() {
   //increments break time
   timer.breakTime++;
   timer.seconds = 59;
-  $(".breakNum").text(timer.breakTime);
+  $("#breakNum").text(timer.breakTime);
   if (timer.isBreak) {
    $("#display").text(timer.breakTime);
   }
@@ -44,7 +44,7 @@ timer.breakPlus = function() {
 timer.breakMinus = function() {
   timer.breakTime <= 1 ? timer.breakTime : timer.breakTime--;
   timer.seconds = 59;
-  $(".breakNum").text(timer.breakTime);
+  $("#breakNum").text(timer.breakTime);
   if (timer.isBreak) {
     $("#display").text(timer.breakTime);
   }
@@ -170,8 +170,8 @@ timer.reset = function() {
 
 }
 $(document).ready(function() {
-  $(".breakNum").text(timer.breakTime);
-  $(".sessNum").text(timer.sessTime);
+  $("#breakNum").text(timer.breakTime);
+  $("#sessNum").text(timer.sessTime);
   $("#display").text(timer.sessTime);
   $("#sessPlus").click(timer.handleSessPlus);
   $("#sessMinus").click(timer.handleSessMinus);
